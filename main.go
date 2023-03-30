@@ -1,7 +1,7 @@
 package raid
 
 import (
-    "log"
+    "os/exec"
 )
 
 //const tool = "/opt/MegaRAID/storcli/storcli64"
@@ -20,7 +20,7 @@ func (r RaidPlugin) RAID() (string, error) {
 }
 
 // Clear 擦除raid
-func (r RaidPlugin) Clear(ctrlID string) (err error) {
+func (r RaidPlugin) Clear(ctrlID string) (string, error) {
     cmd := exec.Command(tool, "-l", "/tmp")
     out, err := cmd.CombinedOutput()
     if err != nil {
